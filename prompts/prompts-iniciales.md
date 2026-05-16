@@ -1,6 +1,6 @@
 # Claude Prompts for `/home/aldrin/projetos/sources/lidr/frontend`
 
-_6 prompt(s) across 2 project(s)_
+_9 prompt(s) across 2 project(s)_
 
 ## `.`
 
@@ -14,8 +14,15 @@ _6 prompt(s) across 2 project(s)_
   _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
 - **2026-05-16 18:31 UTC** — actualiza `prompts/prompts-iniciales.md` con la saida de `~/bin/list-prompts.py`
   _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
+- **2026-05-16 18:33 UTC** — stage/commit/push
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
+- **2026-05-16 18:36 UTC** — [Pasted text #1 +23 lines]
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
+- **2026-05-16 18:37 UTC** — also modify `CLAUDE.md` to before each stage run `~/bin/list-prompts.py` into `prompts/prompts-iniciales.md` (stage it as well). symlink `AGENTS.md` to it. stage/commit/push
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
 
 ## `prompts`
 
 - **2026-05-16 18:30 UTC** — /quit
   _(session: `942f6156-5223-4371-9830-2cd36ea6aec3`)_
+

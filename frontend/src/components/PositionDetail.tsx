@@ -98,7 +98,7 @@ const PositionDetail: React.FC = () => {
     }, [id]);
 
     const onDragEnd = async (result: DropResult) => {
-        const { source, destination, draggableId } = result;
+        const { source, destination } = result;
         if (!destination) return;
         if (source.droppableId === destination.droppableId && source.index === destination.index) return;
 
@@ -121,10 +121,18 @@ const PositionDetail: React.FC = () => {
         setCandidatesByStep(next);
 
         const newStepId = stepIdByName[destination.droppableId];
-        const candidateId = updatedCandidate.candidateId ?? Number(draggableId.split(':')[0]);
-        const applicationId = updatedCandidate.applicationId ?? Number(draggableId.split(':')[1] ?? draggableId.split(':')[0]);
+        const { candidateId, applicationId } = updatedCandidate;
+        const isPositiveInt = (n: unknown): n is number =>
+            typeof n === 'number' && Number.isInteger(n) && n > 0;
 
-        if (!newStepId || Number.isNaN(candidateId)) return;
+        if (!isPositiveInt(newStepId) || !isPositiveInt(candidateId) || !isPositiveInt(applicationId)) {
+            setCandidatesByStep(previous);
+            console.error('Aborting stage update: missing candidateId/applicationId/stepId', {
+                candidateId, applicationId, newStepId, candidate: updatedCandidate,
+            });
+            setError('No se pudo actualizar la fase: el candidato no tiene identificadores válidos.');
+            return;
+        }
 
         try {
             await updateCandidateStage(candidateId, applicationId, newStepId);
