@@ -1,102 +1,21 @@
-# Prompts iniciales — Ejercicio AI4Devs Frontend (vista "position")
+# Claude Prompts for `/home/aldrin/projetos/sources/lidr/frontend`
 
-Repositorio base: https://github.com/LIDR-academy/AI4Devs-frontend-202602
-Rama de entrega: `frontend-iniciales`
-Asistente usado: Claude Code (modelo `claude-opus-4-7`).
+_6 prompt(s) across 2 project(s)_
 
----
+## `.`
 
-## Contexto entregado al asistente
+- **2026-05-16 17:47 UTC** — aqui hemos hecho un clon de `https://github.com/LIDR-academy/AI4Devs-frontend-202602` - inicialize y implemente las instrucciones abajo, pero antes hay 2 screenshots que voy poner en enlace abajo y estan referenciados en el ejercicio  https://media1-production-mightynetworks.imgix.net/asset/75d1610b-804e-4b80-b82e-f0a812a66d1b/1718804691954.png?ixlib=rails-4.2.0&fm=jpg&q=75&auto=format&w=1400&h=1400&fit=max&impolicy=ResizeCrop&constraint=downsize&aspect=fit https://media1-production-mightynetworks.imgix.net/asset/a827447c-4254-4458-9c44-6540fde8e3b8/1718804691847.png?ixlib=rails-4.2.0&fm=jpg&q=75&auto=format&w=1400&h=1400&fit=max&impolicy=ResizeCrop&constraint=downsize&aspect=fit  --- En LTI ya tenemos la funcionalidad para listar las diferentes posiciones requeridas por la empresa. Está disponible en una pagina "positions" que muestra una lista de tarjetas que describen cada posición. Cuenta con filtros para poder buscar por texto, fecha límite, estado y manager responsable:  [img 1]   Queremos que al hacer clic en el botón "Ver proceso" de cualquiera de las posiciones, nos lleve a la vista de detalle de cada posición, denominada "position".  1. Descarga el repositorio base de Github Apóyate en el repositorio base para este ejercicio:  [AI4Devs-frontend](https://github.com/LIDR-academy/AI4Devs-frontend-202602)   2. Realiza el ejercicio Tu misión en este ejercicio es crear la interfaz "position", una página en la que poder visualizar y gestionar los diferentes candidatos de una posición específica.  Se ha decidido que la interfaz sea tipo kanban, mostrando los candidatos como tarjetas en diferentes columnas que representan las fases del proceso de contratación, y pudiendo actualizar la fase en la que se encuentra un candidato solo arrastrando su tarjeta.Aquí tienes un ejemplo de interfaz posible:  [img 2]  Algunos de los requerimientos del equipo de diseño que se pueden ver en el ejemplo son:   * Se debe mostrar el título de la posición en la parte superior, para dar contexto   * Añadir una flecha a la izquierda del título que permita volver al listado de posiciones   * Deben mostrarse tantas columnas como fases haya en el proceso   * La tarjeta de cada candidato/a debe situarse en la fase correspondiente, y debe mostrar su nombre completo y su puntuación media   * Si es posible, debe mostrarse adecuadamente en móvil (las fases en vertical ocupando todo el ancho)  Algunas observaciones:   * Asume que la página de posiciones la encuentras   * Asume que existe la estructura global de la página, la cual incluye los elementos comunes como menú superior y footer. Lo que estás creando es el contenido interno de la página.  Para implementar la funcionalidad de la página cuentas con diversos endpoints API que ha preparado el equipo de backend:  `GET /positions/:id/interviewFlow` Este endpoint devuelve información sobre el proceso de contratación para una determinada posición:  positionName: Título de la posición  interviewSteps: id y nombre de las diferentes fases de las que consta el proceso de contratación  ``` {       "positionName": "Senior backend engineer",       "interviewFlow": {                              "id": 1,               "description": "Standard development interview process",               "interviewSteps": [                   {                       "id": 1,                       "interviewFlowId": 1,                       "interviewTypeId": 1,                       "name": "Initial Screening",                       "orderIndex": 1                   },                   {                       "id": 2,                       "interviewFlowId": 1,                       "interviewTypeId": 2,                       "name": "Technical Interview",                       "orderIndex": 2                   },                   {                       "id": 3,                       "interviewFlowId": 1,                       "interviewTypeId": 3,                       "name": "Manager Interview",                       "orderIndex": 2                   }               ]           }   } ```  `GET /positions/:id/candidates` Este endpoint devuelve todos los candidatos en proceso para una determinada posición, es decir, todas las aplicaciones para un determinado positionID. Proporciona la siguiente información:  name: Nombre completo del candidato  current_interview_step: en qué fase del proceso está el candidato.  score: La puntuación media del candidato  ``` [       {            "fullName": "Jane Smith",            "currentInterviewStep": "Technical Interview",            "averageScore": 4        },        {            "fullName": "Carlos García",            "currentInterviewStep": "Initial Screening",            "averageScore": 0                    },                {            "fullName": "John Doe",            "currentInterviewStep": "Manager Interview",            "averageScore": 5                   }      ] ```   `PUT /candidates/:id/stage` Este endpoint actualiza la etapa del candidato movido. Permite modificar la fase actual del proceso de entrevista en la que se encuentra un candidato específico, a través del parámetro "new_interview_step" y proporionando el interview_step_id correspondiente a la columna en la cual se encuentra ahora el candidato.  ``` {      "applicationId": "1",      "currentInterviewStep": "3"  } {         "message": "Candidate stage updated successfully",      "data": {          "id": 1,          "positionId": 1,          "candidateId": 1,          "applicationDate": "2024-06-04T13:34:58.304Z",          "currentInterviewStep": 3,          "notes": null,          "interviews": []          }  } ```   3. Entrega el ejercicio Esperamos tu entrega como un pull request en el repositorio que  incluya:  Los cambios de páginas, lógica, etc. en la carpeta /frontend  Un fichero prompts-iniciales.md en la carpeta prompts.  Para ello, debes seguir los siguientes pasos una vez ya tengas el repositorio preparado como se ha explicado en el paso anterior:  Completar el ejercicio: rellenar el prompt y el código necesario en frontend  Crear una nueva rama para tu entregable con el nombre frontend-iniciales  Hacer commit  ⁠Git push  En la interfaz de tu repositorio te saldrá un aviso arriba para hacer ⁠Pull request  En caso de que falle, puedes enviar el proyecto en zip por correo a dago@lidr.es.  Si tienes dudas sobre el ejercicio, consúltalas en el grupo de whatsapp para que podamos apoyarte lo más rápido posible, y que otr@s compañer@s también la resuelvan.  Por último, no olvides añadir tus prompts en prompts.md dentro de la carpeta prompts.       ¡A por ello!
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
+- **2026-05-16 18:19 UTC** — claude crashed out - where are we?
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
+- **2026-05-16 18:22 UTC** — haga el fork usando `gh`, envia la rama. haga un PR hacia origin llamado `frontend-inicial-AL`
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
+- **2026-05-16 18:23 UTC** — haga el fork usando `gh`, envia la rama. haga un PR hacia origin llamado `frontend-iniciales-al`
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
+- **2026-05-16 18:31 UTC** — actualiza `prompts/prompts-iniciales.md` con la saida de `~/bin/list-prompts.py`
+  _(session: `af663cc0-bc80-4255-9bae-96b53ae566da`)_
 
-Se le proporcionó al asistente:
+## `prompts`
 
-1. El enunciado del ejercicio en español (objetivo: construir la vista de detalle de una `position` con interfaz kanban y drag-and-drop entre fases).
-2. Los dos screenshots de referencia (listado de posiciones y vista kanban de candidatos con tarjetas y puntuación representada con puntos verdes).
-3. La especificación de los tres endpoints del backend:
-   - `GET /positions/:id/interviewFlow`
-   - `GET /positions/:id/candidates`
-   - `PUT /candidates/:id/stage`
-4. El repositorio ya clonado en `frontend/` con el listado de posiciones existente (`src/components/Positions.tsx`) y los servicios actuales (`src/services/candidateService.js`).
-
----
-
-## Prompt 1 — Inicialización y análisis
-
-> "aqui hemos hecho un clon de `https://github.com/LIDR-academy/AI4Devs-frontend-202602` - inicialize y implemente las instrucciones abajo, pero antes hay 2 screenshots que voy poner en enlace abajo y estan referenciados en el ejercicio …"
->
-> (seguido del enunciado completo del ejercicio y los enlaces a los dos screenshots)
-
-Resultado esperado:
-
-- Inspeccionar el código existente para entender la estructura (`App.js`, `Positions.tsx`, `services/`).
-- Identificar dependencias presentes (`react-router-dom`, `react-bootstrap`, `react-bootstrap-icons`) y faltantes (librería de drag-and-drop, `axios`).
-- Mirar los screenshots para definir el aspecto visual (cabecera con flecha + título, columnas con fondo gris claro, tarjetas blancas, puntuación como puntos verdes).
-- Crear una rama `frontend-iniciales` para el entregable.
-
----
-
-## Prompt 2 — Diseño técnico
-
-Decisiones tomadas tras analizar el contexto:
-
-- **Drag-and-drop**: usar `@hello-pangea/dnd` (fork mantenido de `react-beautiful-dnd`, compatible con React 18). Se descartó `react-beautiful-dnd` por estar deprecated en React 18 con StrictMode.
-- **Llamadas API**: módulo nuevo `src/services/positionService.js` (mismo estilo que `candidateService.js`, basado en `axios` apuntando a `http://localhost:3010`).
-- **Componente**: `src/components/PositionDetail.tsx` en TypeScript (alineado con `Positions.tsx`).
-- **Ruta**: `/positions/:id` añadida en `App.js`.
-- **Botón "Ver proceso"**: conectado al detalle mediante `useNavigate` desde `Positions.tsx` (los `mockPositions` recibieron un `id` numérico).
-- **Responsive**: en `<md` las columnas pasan a 100% de ancho apiladas verticalmente; en `≥md` quedan en horizontal con scroll si el contenido excede el viewport.
-- **Puntuación**: 5 puntos representados como círculos; los `averageScore` primeros se rellenan en verde (`#22c55e`) y el resto en gris claro, replicando el screenshot.
-- **Optimistic update**: al soltar una tarjeta, se mueve inmediatamente en el estado y se llama al `PUT /candidates/:id/stage`; si falla, se revierte el estado y se muestra una alerta.
-
----
-
-## Prompt 3 — Implementación
-
-Pasos ejecutados por el asistente:
-
-1. `npm install @hello-pangea/dnd axios` dentro de `frontend/`.
-2. Crear `frontend/src/services/positionService.js` con `getInterviewFlow`, `getCandidatesByPosition`, `updateCandidateStage`.
-3. Crear `frontend/src/components/PositionDetail.tsx`:
-   - Carga paralela de `interviewFlow` y `candidates` con `Promise.all`.
-   - Ordena las fases por `orderIndex` y agrupa los candidatos por `currentInterviewStep`.
-   - `DragDropContext` + un `Droppable` por fase + un `Draggable` por candidato.
-   - Cabecera con `<ArrowLeft />` (de `react-bootstrap-icons`) navegando a `/positions`.
-   - `ScoreDots` para la puntuación visual.
-   - Estilos responsive inline para el comportamiento móvil/desktop.
-4. Actualizar `frontend/src/App.js` para registrar la nueva ruta `/positions/:id`.
-5. Actualizar `frontend/src/components/Positions.tsx`:
-   - Añadir `id` al tipo `Position` y a los `mockPositions`.
-   - `onClick` en "Ver proceso" → `navigate(`/positions/${position.id}`)`.
-6. Validar con `tsc --noEmit` (sin errores de tipos).
-
----
-
-## Prompt 4 — Entrega
-
-Pasos finales:
-
-- Crear `prompts/prompts-iniciales.md` (este archivo).
-- Commit en la rama `frontend-iniciales`.
-- `git push -u origin frontend-iniciales` (manual por el usuario).
-- Abrir Pull Request en GitHub apuntando a `main`.
-
----
-
-## Endpoints consumidos
-
-| Método | Ruta | Uso |
-|--------|------|-----|
-| GET    | `/positions/:id/interviewFlow` | Título de la posición y fases del proceso |
-| GET    | `/positions/:id/candidates`    | Candidatos con `fullName`, `currentInterviewStep`, `averageScore` |
-| PUT    | `/candidates/:id/stage`        | Actualizar la fase tras soltar la tarjeta (`{ applicationId, currentInterviewStep }`) |
-
----
-
-## Cumplimiento de los requisitos del enunciado
-
-- [x] Título de la posición en la parte superior.
-- [x] Flecha a la izquierda del título para volver al listado (`/positions`).
-- [x] Una columna por cada fase del proceso (ordenadas por `orderIndex`).
-- [x] Tarjeta por candidato con nombre completo y puntuación media (puntos verdes).
-- [x] Drag-and-drop entre columnas, persistido vía `PUT /candidates/:id/stage`.
-- [x] Layout responsive: columnas en vertical ocupando todo el ancho en móvil.
+- **2026-05-16 18:30 UTC** — /quit
+  _(session: `942f6156-5223-4371-9830-2cd36ea6aec3`)_
